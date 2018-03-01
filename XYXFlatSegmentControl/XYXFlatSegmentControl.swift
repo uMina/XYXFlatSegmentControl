@@ -8,15 +8,20 @@
 
 import UIKit
 
-@objc protocol XYXFlatSegmentControlDelegate {
+@objc public protocol XYXFlatSegmentControlDelegate {
     @objc func segmentControlValueChanged(at index:Int)
 }
 
-class XYXFlatSegmentControl: UIView {
+open class XYXFlatSegmentControl: UIView {
+    
+    //MARK: - Public Member
+    
+    //  Titles
+    open var titles:[String] = []
     
     //  Buttons and underline
-    var buttonFontSize:CGFloat = 16.0
-    var buttonSelectedColor = UIColor.orange{
+    open var buttonFontSize:CGFloat = 16.0
+    open var buttonSelectedColor = UIColor.orange{
         didSet{
             underline.backgroundColor = buttonSelectedColor
             for button in buttons {
@@ -24,24 +29,24 @@ class XYXFlatSegmentControl: UIView {
             }
         }
     }
-    var buttonNormalColor = UIColor.gray
-    var underlineThickness:CGFloat = 1.5{
+    open var buttonNormalColor = UIColor.gray
+    open var underlineThickness:CGFloat = 1.5{
         didSet{
             underline.frame = CGRect(x: underline.frame.minX, y: underline.frame.minY, width: underline.frame.width, height: underlineThickness)
         }
     }
-    var underlineShouldDisplay = true{
+    open var underlineShouldDisplay = true{
         didSet{
             configureunderline(animationDuration: 0)
         }
     }
-    var underlineWidthBoundToText = true{
+    open var underlineWidthBoundToText = true{
         didSet{
             configureunderline(animationDuration: 0)
         }
     }
     
-    var defaultSelectedIndex = 0 {
+    open var defaultSelectedIndex = 0 {
         didSet{
             selectedButtonTag = defaultSelectedIndex + buttonTagFlag
             
@@ -57,49 +62,44 @@ class XYXFlatSegmentControl: UIView {
     }
     
     //  Gap
-    @IBInspectable var horizontalGap:CGFloat = 8.0 //左右两侧
-    @IBInspectable var verticalGap:CGFloat = 4.0   //垂直上下
-    @IBInspectable var buttonGap:CGFloat = 4.0     //按钮之间
-    @IBInspectable var buttonUnderlineGap:CGFloat = 2.0 {//按钮与下划线之间
+    @IBInspectable open var horizontalGap:CGFloat = 8.0 //左右两侧
+    @IBInspectable open var verticalGap:CGFloat = 4.0   //垂直上下
+    @IBInspectable open var buttonGap:CGFloat = 4.0     //按钮之间
+    @IBInspectable open var buttonUnderlineGap:CGFloat = 2.0 {//按钮与下划线之间
         didSet{
             configureunderline(animationDuration: 0)
         }
     }
     
     //  Delegate
-    @IBOutlet var delegate:XYXFlatSegmentControlDelegate? = nil
+    @IBOutlet open var delegate:XYXFlatSegmentControlDelegate? = nil
     
-    //  Titles
-    var titles:[String] = []
     
-    //  Constant
-    fileprivate let buttonTagFlag = 1000
-    
+    //MARK: - Fileprivate Member
+    //  Fileprivate Member
     fileprivate let underline = UIView()
-    fileprivate var buttons:[UIButton] = []
+    fileprivate let buttonTagFlag = 1000
     fileprivate var selectedButtonTag:Int = 0
-    
-    //  Volatile
+    fileprivate var buttons:[UIButton] = []
     fileprivate var buttonWidth:CGFloat = 44.0
     fileprivate var buttonHeight:CGFloat = 44.0
-    
     
     //MARK: - Life Cycle
     
     convenience init() {
         self.init(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width, height: 44.0)))
     }
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         selectedButtonTag = buttonTagFlag
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         selectedButtonTag = buttonTagFlag
         buttonHeight = frame.height
     }
     
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         for subview in self.subviews {
@@ -131,7 +131,7 @@ class XYXFlatSegmentControl: UIView {
         configureunderline(animationDuration: 0)
     }
     
-    //MARK: -
+    //MARK: - Fileprivate Action
     
     fileprivate func createButton() -> UIButton {
         let button = UIButton.init(type: .custom)
