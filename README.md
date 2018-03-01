@@ -10,7 +10,7 @@
 pod 'XYXFlatSegmentControl', '~> 1.1.0'
  
 
-代码的初始化方式:
+# 初始化: 支持xib, 也支持纯代码方式
 ```
 let segmentControl = XYXFlatSegmentControl()
 let segmentControl = XYXFlatSegmentControl(frame:<#frame#>)
@@ -31,3 +31,4 @@ let segmentControl = XYXFlatSegmentControl(frame:<#frame#>)
 A: horizontalGap  
 B: verticalGap  
 C: buttonGap
+D: buttonUnderlineGap
