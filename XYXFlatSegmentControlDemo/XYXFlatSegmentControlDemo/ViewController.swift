@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var labelThickness: UILabel!
+    @IBOutlet weak var labelGap: UILabel!
     @IBOutlet weak var segView: XYXFlatSegmentControl!
     let segmentControl = XYXFlatSegmentControl.init(frame: CGRect(x: 0, y: 130, width: UIScreen.main.bounds.width, height: 44))
     var underlineShouldDisplay = false
+    var underlineBoundsToText = true
+    
     var underlineThickness:CGFloat = 1.5
+    var buttonUnderlineGap:CGFloat = 10.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,7 @@ class ViewController: UIViewController {
         segmentControl.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         segmentControl.underlineShouldDisplay = underlineShouldDisplay
         segmentControl.buttonSelectedColor = UIColor.blue
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,10 +56,23 @@ class ViewController: UIViewController {
         segmentControl.underlineShouldDisplay = underlineShouldDisplay
     }
     
+    @IBAction func underlineBoundsChanged(_ sender: UIButton) {
+        underlineBoundsToText = !underlineBoundsToText
+        let title = underlineBoundsToText ? "Underline bounds to Button" : "Underline bounds to Text"
+        sender.setTitle(title, for: .normal)
+        segmentControl.underlineWidthBoundToText = underlineBoundsToText
+    }
+    
     @IBAction func underlineThicknessChanged(_ sender: UISlider) {
         underlineThickness = CGFloat(sender.value)
         segmentControl.underlineThickness = underlineThickness
-        label.text = "Change the thickness of the underline:\(String(format: "%.2f", sender.value))"
+        labelThickness.text = "Change the thickness of the underline:\(String(format: "%.2f", sender.value))"
+    }
+    
+    @IBAction func buttonUnderlineGapChanged(_ sender: UISlider) {
+        buttonUnderlineGap = CGFloat(sender.value)
+        segmentControl.buttonUnderlineGap = buttonUnderlineGap
+        labelGap.text = "Change the gap of button and underline:\(String(format: "%.2f", sender.value))"
     }
 }
 

@@ -35,6 +35,12 @@ class XYXFlatSegmentControl: UIView {
             configureunderline(animationDuration: 0)
         }
     }
+    var underlineWidthBoundToText = true{
+        didSet{
+            configureunderline(animationDuration: 0)
+        }
+    }
+    
     var defaultSelectedIndex = 0 {
         didSet{
             selectedButtonTag = defaultSelectedIndex + buttonTagFlag
@@ -54,6 +60,11 @@ class XYXFlatSegmentControl: UIView {
     @IBInspectable var horizontalGap:CGFloat = 8.0 //左右两侧
     @IBInspectable var verticalGap:CGFloat = 4.0   //垂直上下
     @IBInspectable var buttonGap:CGFloat = 4.0     //按钮之间
+    @IBInspectable var buttonUnderlineGap:CGFloat = 2.0 {//按钮与下划线之间
+        didSet{
+            configureunderline(animationDuration: 0)
+        }
+    }
     
     //  Delegate
     @IBOutlet var delegate:XYXFlatSegmentControlDelegate? = nil
@@ -175,16 +186,24 @@ class XYXFlatSegmentControl: UIView {
         
         let selectedButton = buttons[selectedButtonTag - buttonTagFlag]
         selectedButton.layoutSubviews()
-        let titleLabelFrame = selectedButton.titleLabel?.frame ?? CGRect.zero
+        
         let idx = selectedButtonTag - buttonTagFlag
 
-        if animationDuration > 0 {
-            UIView.animate(withDuration: animationDuration) {[unowned self] in
-                self.underline.frame = CGRect(x: titleLabelFrame.minX + self.horizontalGap + (CGFloat(self.buttonGap)+self.buttonWidth)*CGFloat(idx), y: titleLabelFrame.maxY+4, width: titleLabelFrame.width, height: self.underlineThickness)
-            }
-        } else {
-            self.underline.frame = CGRect(x: titleLabelFrame.minX + self.horizontalGap + (CGFloat(self.buttonGap)+self.buttonWidth)*CGFloat(idx), y: titleLabelFrame.maxY+4, width: titleLabelFrame.width, height: self.underlineThickness)
+        var newFrame = CGRect.zero
+        if underlineWidthBoundToText {
+            let theFrame = selectedButton.titleLabel?.frame ?? CGRect.zero
+            newFrame = CGRect(x: theFrame.minX + self.horizontalGap + (CGFloat(self.buttonGap)+self.buttonWidth)*CGFloat(idx), y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)
+        }else{
+            let theFrame = selectedButton.frame
+            newFrame = CGRect(x: theFrame.minX, y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)
         }
         
+        if animationDuration > 0 {
+            UIView.animate(withDuration: animationDuration) {[unowned self] in
+                self.underline.frame = newFrame
+            }
+        } else {
+            self.underline.frame = newFrame
+        }
     }
 }
