@@ -30,5 +30,5 @@ let segmentControl = XYXFlatSegmentControl(frame:<#frame#>)
 ![aa](/gap.png)
 A: horizontalGap  
 B: verticalGap  
-C: buttonGap
+C: buttonGap 
 D: buttonUnderlineGap
