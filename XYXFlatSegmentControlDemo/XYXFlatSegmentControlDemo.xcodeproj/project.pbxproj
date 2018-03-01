@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F431998720479BFD006B84BF /* XYXFlatSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431998620479BFD006B84BF /* XYXFlatSegmentControl.swift */; };
 		F4867D99204655A30006924E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4867D98204655A30006924E /* AppDelegate.swift */; };
 		F4867D9B204655A30006924E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4867D9A204655A30006924E /* ViewController.swift */; };
 		F4867D9E204655A30006924E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4867D9C204655A30006924E /* Main.storyboard */; };
 		F4867DA0204655A30006924E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4867D9F204655A30006924E /* Assets.xcassets */; };
 		F4867DA3204655A30006924E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4867DA1204655A30006924E /* LaunchScreen.storyboard */; };
-		F4867DAC204655B60006924E /* XYXFlatSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4867DAB204655B60006924E /* XYXFlatSegmentControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F431998620479BFD006B84BF /* XYXFlatSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYXFlatSegmentControl.swift; sourceTree = "<group>"; };
 		F4867D95204655A30006924E /* XYXFlatSegmentControlDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYXFlatSegmentControlDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4867D98204655A30006924E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4867D9A204655A30006924E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,7 +24,6 @@
 		F4867D9F204655A30006924E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4867DA2204655A30006924E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4867DA4204655A30006924E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4867DAB204655B60006924E /* XYXFlatSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYXFlatSegmentControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +37,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F431998520479BFD006B84BF /* XYXFlatSegmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				F431998620479BFD006B84BF /* XYXFlatSegmentControl.swift */,
+			);
+			name = XYXFlatSegmentControl;
+			path = ../../XYXFlatSegmentControl;
+			sourceTree = "<group>";
+		};
 		F4867D8C204655A30006924E = {
 			isa = PBXGroup;
 			children = (
@@ -58,21 +67,13 @@
 			children = (
 				F4867D98204655A30006924E /* AppDelegate.swift */,
 				F4867D9A204655A30006924E /* ViewController.swift */,
-				F4867DAA204655AE0006924E /* XYXFlatSegmentControl */,
+				F431998520479BFD006B84BF /* XYXFlatSegmentControl */,
 				F4867D9C204655A30006924E /* Main.storyboard */,
 				F4867D9F204655A30006924E /* Assets.xcassets */,
 				F4867DA1204655A30006924E /* LaunchScreen.storyboard */,
 				F4867DA4204655A30006924E /* Info.plist */,
 			);
 			path = XYXFlatSegmentControlDemo;
-			sourceTree = "<group>";
-		};
-		F4867DAA204655AE0006924E /* XYXFlatSegmentControl */ = {
-			isa = PBXGroup;
-			children = (
-				F4867DAB204655B60006924E /* XYXFlatSegmentControl.swift */,
-			);
-			path = XYXFlatSegmentControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4867D9B204655A30006924E /* ViewController.swift in Sources */,
-				F4867DAC204655B60006924E /* XYXFlatSegmentControl.swift in Sources */,
+				F431998720479BFD006B84BF /* XYXFlatSegmentControl.swift in Sources */,
 				F4867D99204655A30006924E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
