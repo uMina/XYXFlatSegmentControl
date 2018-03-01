@@ -17,7 +17,13 @@ open class XYXFlatSegmentControl: UIView {
     //MARK: - Public Member
     
     //  Titles
-    open var titles:[String] = []
+    open var titles:[String] = []{
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.05) { [unowned self] in
+                self.layoutSubviews()
+            }
+        }
+    }
     
     //  Buttons and underline
     open var buttonFontSize:CGFloat = 16.0
@@ -29,7 +35,14 @@ open class XYXFlatSegmentControl: UIView {
             }
         }
     }
-    open var buttonNormalColor = UIColor.gray
+    open var buttonNormalColor = UIColor.gray{
+        didSet{
+            underlineBackgroundView.backgroundColor = buttonSelectedColor
+            for button in buttons {
+                button.setTitleColor(buttonSelectedColor, for: .normal)
+            }
+        }
+    }
     open var underlineThickness:CGFloat = 1.5{
         didSet{
             underline.frame = CGRect(x: underline.frame.minX, y: underline.frame.minY, width: underline.frame.width, height: underlineThickness)
@@ -61,6 +74,12 @@ open class XYXFlatSegmentControl: UIView {
         }
     }
     
+    open var underlineBackgroundShow = false{
+        didSet{
+            layoutSubviews()
+        }
+    }
+    
     //  Gap
     @IBInspectable open var horizontalGap:CGFloat = 8.0 //左右两侧
     @IBInspectable open var verticalGap:CGFloat = 4.0   //垂直上下
@@ -78,6 +97,7 @@ open class XYXFlatSegmentControl: UIView {
     //MARK: - Fileprivate Member
     //  Fileprivate Member
     fileprivate let underline = UIView()
+    fileprivate let underlineBackgroundView = UIView()
     fileprivate let buttonTagFlag = 1000
     fileprivate var selectedButtonTag:Int = 0
     fileprivate var buttons:[UIButton] = []
@@ -92,10 +112,12 @@ open class XYXFlatSegmentControl: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         selectedButtonTag = buttonTagFlag
+        underlineBackgroundView.backgroundColor = buttonNormalColor
     }
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         selectedButtonTag = buttonTagFlag
+        underlineBackgroundView.backgroundColor = buttonNormalColor
         buttonHeight = frame.height
     }
     
@@ -126,6 +148,15 @@ open class XYXFlatSegmentControl: UIView {
                 button.isSelected = true
             }
             idx += 1
+        }
+        
+        if underlineBackgroundShow && underlineShouldDisplay && underlineWidthBoundToText == false{
+            let theButton = buttons[0]
+            let theFrame = underlineWidthBoundToText ? (theButton.titleLabel?.frame ?? CGRect.zero) : theButton.frame
+            underlineBackgroundView.frame = CGRect(x: horizontalGap, y: theFrame.maxY+self.buttonUnderlineGap, width: frame.width-2*horizontalGap, height: underlineThickness)
+            addSubview(underlineBackgroundView)
+        }else{
+            underlineBackgroundView.removeFromSuperview()
         }
         
         configureunderline(animationDuration: 0)

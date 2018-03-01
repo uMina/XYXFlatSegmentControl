@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelGap: UILabel!
     @IBOutlet weak var segView: XYXFlatSegmentControl!
     let segmentControl = XYXFlatSegmentControl.init(frame: CGRect(x: 0, y: 130, width: UIScreen.main.bounds.width, height: 44))
-    var underlineShouldDisplay = false
+    var underlineShouldDisplay = true
     var underlineBoundsToText = true
     
     var underlineThickness:CGFloat = 1.5
@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         segmentControl.delegate = self
         self.view.addSubview(segmentControl)
 
-        segmentControl.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         segmentControl.underlineShouldDisplay = underlineShouldDisplay
         segmentControl.buttonSelectedColor = UIColor.blue
         
@@ -74,6 +73,15 @@ class ViewController: UIViewController {
         segmentControl.buttonUnderlineGap = buttonUnderlineGap
         labelGap.text = "Change the gap of button and underline:\(String(format: "%.2f", sender.value))"
     }
+    
+    @IBAction func showUnderlineBg(_ sender: UISwitch) {
+        if sender.isOn {
+            segmentControl.underlineBackgroundShow = true
+        }else{
+            segmentControl.underlineBackgroundShow = false
+        }   
+    }
+    
 }
 
 extension ViewController: XYXFlatSegmentControlDelegate {
