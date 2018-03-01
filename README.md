@@ -5,7 +5,12 @@
 
 ![bbb](/bbb.gif)
 
-代码的初始化方式:
+# 支持Cocoapods
+获取方法:
+pod 'XYXFlatSegmentControl', '~> 1.1.0'
+ 
+
+# 初始化: 支持xib, 也支持纯代码方式
 ```
 let segmentControl = XYXFlatSegmentControl()
 let segmentControl = XYXFlatSegmentControl(frame:<#frame#>)
@@ -17,6 +22,8 @@ let segmentControl = XYXFlatSegmentControl(frame:<#frame#>)
  segmentControl.delegate 实现后才能获知哪个按钮被点击了.
  segView.defaultSelectedIndex 可以用于设定初始被选中的按钮
  segmentControl.underlineShouldDisplay 用于是否显示下划线
+ segmentControl.underlineWidthBoundToText 下划线宽度与文字等宽或者与按钮等宽
+ segmentControl.buttonUnderlineGap 下划线与按钮或者文字之间的间隙
 ```
 
 关于Gap:
@@ -24,3 +31,4 @@ let segmentControl = XYXFlatSegmentControl(frame:<#frame#>)
 A: horizontalGap  
 B: verticalGap  
 C: buttonGap
+D: buttonUnderlineGap
