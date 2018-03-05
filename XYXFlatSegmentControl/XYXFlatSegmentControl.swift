@@ -31,15 +31,23 @@ open class XYXFlatSegmentControl: UIView {
         didSet{
             underline.backgroundColor = buttonSelectedColor
             for button in buttons {
-                button.setTitleColor(buttonSelectedColor, for: .selected)
+                if button.tag == selectedButtonTag{
+                    button.setTitleColor(buttonSelectedColor, for: .selected)
+                }else{
+                    button.setTitleColor(buttonNormalColor, for: .normal)
+                }
             }
         }
     }
     open var buttonNormalColor = UIColor.gray{
         didSet{
-            underlineBackgroundView.backgroundColor = buttonSelectedColor
+            underlineBackgroundView.backgroundColor = buttonNormalColor.withAlphaComponent(0.2)
             for button in buttons {
-                button.setTitleColor(buttonSelectedColor, for: .normal)
+                if button.tag == selectedButtonTag{
+                    button.setTitleColor(buttonSelectedColor, for: .selected)
+                }else{
+                    button.setTitleColor(buttonNormalColor, for: .normal)
+                }
             }
         }
     }
@@ -112,12 +120,12 @@ open class XYXFlatSegmentControl: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         selectedButtonTag = buttonTagFlag
-        underlineBackgroundView.backgroundColor = buttonNormalColor
+        underlineBackgroundView.backgroundColor = buttonNormalColor.withAlphaComponent(0.2)
     }
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         selectedButtonTag = buttonTagFlag
-        underlineBackgroundView.backgroundColor = buttonNormalColor
+        underlineBackgroundView.backgroundColor = buttonNormalColor.withAlphaComponent(0.2)
         buttonHeight = frame.height
     }
     
@@ -229,12 +237,23 @@ open class XYXFlatSegmentControl: UIView {
             newFrame = CGRect(x: theFrame.minX, y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)
         }
         
+        guard newFrame.minY > self.buttonUnderlineGap else{
+            //确保underline在按钮以下位置
+            self.perform(#selector(configureunderline(animationDuration:)), with: TimeInterval(0), afterDelay: 0.05)
+            return
+        }
+        
         if animationDuration > 0 {
             UIView.animate(withDuration: animationDuration) {[unowned self] in
                 self.underline.frame = newFrame
             }
         } else {
             self.underline.frame = newFrame
+        }
+        
+        // 调整下划线的背景线位置
+        if underlineBackgroundShow == true && self.underline.center.y != self.underlineBackgroundView.center.y {
+            self.underlineBackgroundView.center.y = self.underline.center.y
         }
     }
 }
