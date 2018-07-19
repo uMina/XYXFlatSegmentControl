@@ -7,7 +7,7 @@
 
 # 支持Cocoapods
 获取方法:
-pod 'XYXFlatSegmentControl', '~> 1.1.1'
+pod 'XYXFlatSegmentControl', '~> 1.2.4'
  
 
 # 初始化: 支持xib, 也支持纯代码方式
