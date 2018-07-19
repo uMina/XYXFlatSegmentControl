@@ -231,7 +231,11 @@ open class XYXFlatSegmentControl: UIView {
         var newFrame = CGRect.zero
         if underlineWidthBoundToText {
             let theFrame = selectedButton.titleLabel?.frame ?? CGRect.zero
-            newFrame = CGRect(x: theFrame.minX + self.horizontalGap + (CGFloat(self.buttonGap)+self.buttonWidth)*CGFloat(idx), y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)
+            var newX = theFrame.minX + self.horizontalGap + (CGFloat(self.buttonGap)+self.buttonWidth)*CGFloat(idx)
+            if self.flat_parentController() is UINavigationController{
+                newX -= 4
+            }
+            newFrame = CGRect(x: newX, y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)
         }else{
             let theFrame = selectedButton.frame
             newFrame = CGRect(x: theFrame.minX, y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)
@@ -255,5 +259,17 @@ open class XYXFlatSegmentControl: UIView {
         if underlineBackgroundShow == true && self.underline.center.y != self.underlineBackgroundView.center.y {
             self.underlineBackgroundView.center.y = self.underline.center.y
         }
+    }
+
+    fileprivate func flat_parentController() -> UIViewController? {
+        var nextResponder:UIResponder? = self.next
+        while nextResponder != nil {
+            if nextResponder is UIViewController{
+                return nextResponder as? UIViewController
+            }
+            nextResponder = nextResponder?.next
+        }
+        
+        return nil
     }
 }

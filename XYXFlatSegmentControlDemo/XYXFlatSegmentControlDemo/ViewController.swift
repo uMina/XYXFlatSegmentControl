@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelThickness: UILabel!
     @IBOutlet weak var labelGap: UILabel!
     @IBOutlet weak var segView: XYXFlatSegmentControl!
+    @IBOutlet weak var labelSecB: UILabel!
     let segmentControl = XYXFlatSegmentControl.init(frame: CGRect(x: 0, y: 130, width: UIScreen.main.bounds.width, height: 44))
     var underlineShouldDisplay = true
     var underlineBoundsToText = true
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
         segView.titles = ["button0","button1","button2"]
         segView.defaultSelectedIndex = 1
         
+        segmentControl.frame = CGRect(x: 0, y: labelSecB.frame.maxY + 24, width: segmentControl.frame.width, height: segmentControl.frame.height)
         segmentControl.titles = ["aa","bbb"]
         segmentControl.delegate = self
         self.view.addSubview(segmentControl)
