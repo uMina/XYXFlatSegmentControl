@@ -19,8 +19,8 @@ open class XYXFlatSegmentControl: UIView {
     //  Titles
     open var titles:[String] = []{
         didSet{
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.05) { [unowned self] in
-                self.layoutSubviews()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.05) { [weak self] in
+                self?.layoutSubviews()
             }
         }
     }
@@ -248,8 +248,8 @@ open class XYXFlatSegmentControl: UIView {
         }
         
         if animationDuration > 0 {
-            UIView.animate(withDuration: animationDuration) {[unowned self] in
-                self.underline.frame = newFrame
+            UIView.animate(withDuration: animationDuration) {[weak self] in
+                self?.underline.frame = newFrame
             }
         } else {
             self.underline.frame = newFrame
