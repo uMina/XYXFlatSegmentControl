@@ -16,7 +16,7 @@ open class XYXFlatSegmentControl: UIView {
     
     //MARK: - Public Member
     
-    //  Titles
+    /// 这样设置则按钮没有图标. 若需要设置图标请使用configureButtons(titles,images)来设定
     open var titles:[String] = []{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.05) { [weak self] in
@@ -24,6 +24,9 @@ open class XYXFlatSegmentControl: UIView {
             }
         }
     }
+    
+    /// 按钮图标。需要通过configureButtons(titles,images)来设定
+    private var buttonImageNames:[String] = []
     
     //  Buttons and underline
     open var buttonFontSize:CGFloat = 16.0
@@ -148,7 +151,10 @@ open class XYXFlatSegmentControl: UIView {
             let button = createButton()
             button.frame = CGRect(x: horizontalGap + (buttonWidth+buttonGap)*CGFloat(idx), y: verticalGap, width: buttonWidth, height: buttonHeight)
             button.tag = idx + buttonTagFlag
-            button.setTitle(title, for: UIControlState.normal)
+            button.setTitle(title, for: UIControl.State.normal)
+            if idx < buttonImageNames.count, let btnimg = UIImage(named: buttonImageNames[idx]){
+                button.setImage(btnimg, for: UIControl.State.normal)
+            }
             addSubview(button)
             buttons.append(button)
             if button.tag == selectedButtonTag{
@@ -179,21 +185,24 @@ open class XYXFlatSegmentControl: UIView {
             return
         }
         
-        //TODO: 改变被选择的按钮
         let oldSelectedBtn = buttons[selectedButtonTag-buttonTagFlag]
         oldSelectedBtn.isSelected = false
         let newSeletedBtn = buttons[index]
         selectedButtonTag = newSeletedBtn.tag
         
-        //TODO: 动画下划线
         let animationDuration = 0.1 + fabs(Double(index)) * 0.05
         configureunderline(animationDuration: animationDuration)
         
-        //TODO: Delegate
         if let theDelegate = self.delegate, triggerDelegate == true {
             theDelegate.segmentControlValueChanged(at: index)
         }
     }
+    
+    public func configureButtons(titles:[String],images:[String] = []) {
+        buttonImageNames = images
+        self.titles = titles
+    }
+    
     
     //MARK: - Fileprivate Action
     
@@ -201,9 +210,9 @@ open class XYXFlatSegmentControl: UIView {
         let button = UIButton.init(type: .custom)
         button.titleLabel?.font = UIFont.systemFont(ofSize: buttonFontSize)
         button.titleLabel?.textAlignment = NSTextAlignment.center
-        button.setTitleColor(buttonSelectedColor, for: UIControlState.selected)
-        button.setTitleColor(buttonNormalColor, for: UIControlState.normal)
-        button.addTarget(self, action: #selector(buttonClick(sender:)), for: UIControlEvents.touchUpInside)
+        button.setTitleColor(buttonSelectedColor, for: UIControl.State.selected)
+        button.setTitleColor(buttonNormalColor, for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(buttonClick(sender:)), for: UIControl.Event.touchUpInside)
         return button
     }
     

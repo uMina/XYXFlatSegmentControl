@@ -40,13 +40,13 @@
                                 </connections>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="2" maxValue="13" translatesAutoresizingMaskIntoConstraints="NO" id="5Nc-pk-KpV">
-                                <rect key="frame" x="33" y="484" width="309" height="31"/>
+                                <rect key="frame" x="33" y="483.5" width="309" height="31"/>
                                 <connections>
                                     <action selector="buttonUnderlineGapChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="K1S-QU-kmD"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change the gap of button and underline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DO7-yk-oob">
-                                <rect key="frame" x="35" y="463" width="305" height="21"/>
+                                <rect key="frame" x="35" y="462.5" width="305" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -70,46 +70,46 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXM-0B-RcO">
-                                <rect key="frame" x="108" y="290" width="159" height="30"/>
+                                <rect key="frame" x="108" y="289.5" width="159" height="30"/>
                                 <state key="normal" title="Change Selected Color"/>
                                 <connections>
                                     <action selector="ChangeColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Bz-vR-mgS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLp-PV-wGq">
-                                <rect key="frame" x="134.5" y="328" width="106" height="30"/>
+                                <rect key="frame" x="134.5" y="327.5" width="106" height="30"/>
                                 <state key="normal" title="Show underline"/>
                                 <connections>
                                     <action selector="showUnderline:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ulR-cQ-5Eb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc9-in-ndx">
-                                <rect key="frame" x="93.5" y="366" width="188" height="30"/>
+                                <rect key="frame" x="93.5" y="365.5" width="188" height="30"/>
                                 <state key="normal" title="Underline bounds to button"/>
                                 <connections>
                                     <action selector="underlineBoundsChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wyu-3D-fpW"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="1" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-vI-b9h">
-                                <rect key="frame" x="27" y="425" width="321" height="31"/>
+                                <rect key="frame" x="27" y="424.5" width="321" height="31"/>
                                 <connections>
                                     <action selector="underlineThicknessChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="IrY-NP-QKN"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change the thickness of the underline:1.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-kf-yii">
-                                <rect key="frame" x="29" y="404" width="317" height="21"/>
+                                <rect key="frame" x="29" y="403.5" width="317" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show background underline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YU-jM-WJI">
-                                <rect key="frame" x="16" y="532" width="213.5" height="21"/>
+                                <rect key="frame" x="16" y="531.5" width="213.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lCH-zf-Z5f">
-                                <rect key="frame" x="258" y="527" width="51" height="31"/>
+                                <rect key="frame" x="258" y="526.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="showUnderlineBg:" destination="BYZ-38-t0r" eventType="valueChanged" id="bvm-Xf-h6p"/>
                                 </connections>
@@ -160,10 +160,10 @@
                             <constraint firstItem="5Nc-pk-KpV" firstAttribute="width" secondItem="DO7-yk-oob" secondAttribute="width" id="a0d-wP-1UV"/>
                             <constraint firstItem="7YU-jM-WJI" firstAttribute="top" secondItem="5Nc-pk-KpV" secondAttribute="bottom" constant="18" id="a86-un-yF2"/>
                             <constraint firstItem="BLp-PV-wGq" firstAttribute="top" secondItem="WXM-0B-RcO" secondAttribute="bottom" constant="8" id="bYR-1C-ZgY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cot-mb-A7S" secondAttribute="trailing" priority="999" constant="52" id="d0v-HC-Hfx"/>
                             <constraint firstItem="WXM-0B-RcO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dG6-iW-Lbb"/>
                             <constraint firstItem="l3j-fU-SOn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="eOX-A0-wzw"/>
-                            <constraint firstItem="Cot-mb-A7S" firstAttribute="leading" secondItem="8U1-T8-pTY" secondAttribute="trailing" constant="16" id="epE-3R-0qo"/>
-                            <constraint firstItem="WXM-0B-RcO" firstAttribute="top" secondItem="FTA-ny-13F" secondAttribute="bottom" constant="60" id="fBe-PY-jlz"/>
+                            <constraint firstItem="Cot-mb-A7S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8U1-T8-pTY" secondAttribute="trailing" constant="8" symbolic="YES" id="epE-3R-0qo"/>
                             <constraint firstItem="Jc9-in-ndx" firstAttribute="top" secondItem="BLp-PV-wGq" secondAttribute="bottom" constant="8" id="gUC-7B-qXF"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l3j-fU-SOn" secondAttribute="trailing" constant="20" symbolic="YES" id="h4D-qa-suF"/>
                             <constraint firstItem="7YU-jM-WJI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="hDo-1r-0vu"/>
@@ -172,6 +172,7 @@
                             <constraint firstItem="FTA-ny-13F" firstAttribute="top" secondItem="l3j-fU-SOn" secondAttribute="bottom" constant="80" id="lRJ-a3-wtr"/>
                             <constraint firstItem="8U1-T8-pTY" firstAttribute="centerY" secondItem="8Cp-bj-cHD" secondAttribute="centerY" id="m6v-nm-I4N"/>
                             <constraint firstItem="BLp-PV-wGq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oax-m2-Gyn"/>
+                            <constraint firstItem="WXM-0B-RcO" firstAttribute="top" secondItem="8U1-T8-pTY" secondAttribute="bottom" constant="18" id="roU-3v-lrk"/>
                             <constraint firstItem="CmE-Yp-Vqr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ron-Mf-S7y"/>
                             <constraint firstItem="FTA-ny-13F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sFW-rf-Vbl"/>
                             <constraint firstItem="Cot-mb-A7S" firstAttribute="centerY" secondItem="8Cp-bj-cHD" secondAttribute="centerY" id="vMa-d4-rgp"/>

@@ -29,7 +29,8 @@ class ViewController: UIViewController {
         segView.defaultSelectedIndex = 1
         
         segmentControl.frame = CGRect(x: 0, y: labelSecB.frame.maxY + 24, width: segmentControl.frame.width, height: segmentControl.frame.height)
-        segmentControl.titles = ["aa","bbb"]
+//        segmentControl.titles = ["aa","bbb"]
+        segmentControl.configureButtons(titles: ["aa","bbb"], images: ["icon_wx","icon_qq"])
         segmentControl.delegate = self
         self.view.addSubview(segmentControl)
 
