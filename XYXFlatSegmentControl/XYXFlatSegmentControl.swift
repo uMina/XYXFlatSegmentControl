@@ -101,7 +101,6 @@ open class XYXFlatSegmentControl: UIView {
     //  Delegate
     @IBOutlet open var delegate:XYXFlatSegmentControlDelegate? = nil
     
-    
     //MARK: - Fileprivate Member
     //  Fileprivate Member
     fileprivate let underline = UIView()
@@ -166,8 +165,34 @@ open class XYXFlatSegmentControl: UIView {
         }else{
             underlineBackgroundView.removeFromSuperview()
         }
-        
+
         configureunderline(animationDuration: 0)
+    }
+    
+    //MARK: - Public
+    public func select(at index:Int, triggerDelegate:Bool = false) {
+        guard index < titles.count else {
+            return
+        }
+        let newSelectedIdx = index + buttonTagFlag
+        guard newSelectedIdx != selectedButtonTag else {
+            return
+        }
+        
+        //TODO: 改变被选择的按钮
+        let oldSelectedBtn = buttons[selectedButtonTag-buttonTagFlag]
+        oldSelectedBtn.isSelected = false
+        let newSeletedBtn = buttons[index]
+        selectedButtonTag = newSeletedBtn.tag
+        
+        //TODO: 动画下划线
+        let animationDuration = 0.1 + fabs(Double(index)) * 0.05
+        configureunderline(animationDuration: animationDuration)
+        
+        //TODO: Delegate
+        if let theDelegate = self.delegate, triggerDelegate == true {
+            theDelegate.segmentControlValueChanged(at: index)
+        }
     }
     
     //MARK: - Fileprivate Action

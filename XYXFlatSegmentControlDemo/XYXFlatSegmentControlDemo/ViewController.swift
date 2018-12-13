@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelGap: UILabel!
     @IBOutlet weak var segView: XYXFlatSegmentControl!
     @IBOutlet weak var labelSecB: UILabel!
+    @IBOutlet weak var textfield: UITextField!
     let segmentControl = XYXFlatSegmentControl.init(frame: CGRect(x: 0, y: 130, width: UIScreen.main.bounds.width, height: 44))
     var underlineShouldDisplay = true
     var underlineBoundsToText = true
@@ -23,8 +24,7 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad()        
         segView.titles = ["button0","button1","button2"]
         segView.defaultSelectedIndex = 1
         
@@ -35,19 +35,22 @@ class ViewController: UIViewController {
 
         segmentControl.underlineShouldDisplay = underlineShouldDisplay
         segmentControl.buttonSelectedColor = UIColor.blue
-        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func changeSelectedBtn(_ sender: UIButton) {
+        textfield.resignFirstResponder()
+        if let idx = Int(textfield.text ?? "0") {
+            segmentControl.select(at: idx, triggerDelegate: true)
+        }
     }
     
     @IBAction func ChangeColor(_ sender: Any) {
+        textfield.resignFirstResponder()
         segmentControl.buttonSelectedColor = UIColor.init(red: CGFloat(arc4random()%256)/255.0, green: CGFloat(arc4random()%256)/255.0, blue: CGFloat(arc4random()%256)/255.0, alpha: 1.0)
     }
     
     @IBAction func showUnderline(_ sender: UIButton) {
+        textfield.resignFirstResponder()
         underlineShouldDisplay = !underlineShouldDisplay
         if underlineShouldDisplay{
             sender.setTitle("Hide underline", for: .normal)
@@ -58,6 +61,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func underlineBoundsChanged(_ sender: UIButton) {
+        textfield.resignFirstResponder()
         underlineBoundsToText = !underlineBoundsToText
         let title = underlineBoundsToText ? "Underline bounds to Button" : "Underline bounds to Text"
         sender.setTitle(title, for: .normal)
@@ -65,18 +69,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func underlineThicknessChanged(_ sender: UISlider) {
+        textfield.resignFirstResponder()
         underlineThickness = CGFloat(sender.value)
         segmentControl.underlineThickness = underlineThickness
         labelThickness.text = "Change the thickness of the underline:\(String(format: "%.2f", sender.value))"
     }
     
     @IBAction func buttonUnderlineGapChanged(_ sender: UISlider) {
+        textfield.resignFirstResponder()
         buttonUnderlineGap = CGFloat(sender.value)
         segmentControl.buttonUnderlineGap = buttonUnderlineGap
         labelGap.text = "Change the gap of button and underline:\(String(format: "%.2f", sender.value))"
     }
     
     @IBAction func showUnderlineBg(_ sender: UISwitch) {
+        textfield.resignFirstResponder()
         if sender.isOn {
             segmentControl.underlineBackgroundShow = true
         }else{
