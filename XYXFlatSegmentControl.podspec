@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "XYXFlatSegmentControl"
-  s.version      = "1.2.6"
+  s.version      = "1.2.7"
   s.summary      = "便捷实用的SegmentControl."
   s.swift_version = "4.0"
 
