@@ -34,11 +34,8 @@ open class XYXFlatSegmentControl: UIView {
         didSet{
             underline.backgroundColor = buttonSelectedColor
             for button in buttons {
-                if button.tag == selectedButtonTag{
-                    button.setTitleColor(buttonSelectedColor, for: .selected)
-                }else{
-                    button.setTitleColor(buttonNormalColor, for: .normal)
-                }
+                button.tintColor = buttonSelectedColor
+                button.setTitleColor(buttonSelectedColor, for: .selected)
             }
         }
     }
@@ -145,15 +142,19 @@ open class XYXFlatSegmentControl: UIView {
         buttonWidth = (frame.width - 2*horizontalGap - CGFloat(titles.count-1)*buttonGap) / CGFloat(titles.count)
         buttonHeight = frame.height - 2*verticalGap
         
-        var idx = 0
+        buttons.removeAll()
         
+        var idx = 0
         for title in titles {
             let button = createButton()
             button.frame = CGRect(x: horizontalGap + (buttonWidth+buttonGap)*CGFloat(idx), y: verticalGap, width: buttonWidth, height: buttonHeight)
             button.tag = idx + buttonTagFlag
             button.setTitle(title, for: UIControl.State.normal)
-            if idx < buttonImageNames.count, let btnimg = UIImage(named: buttonImageNames[idx]){
-                button.setImage(btnimg, for: UIControl.State.normal)
+            if idx < buttonImageNames.count, let btnImg = UIImage(named: buttonImageNames[idx]){
+                let imageN = btnImg.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+                button.setImage(imageN, for: UIControl.State.normal)
+                let imageS = btnImg.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+                button.setImage(imageS, for: UIControl.State.selected)
             }
             addSubview(button)
             buttons.append(button)
@@ -163,7 +164,7 @@ open class XYXFlatSegmentControl: UIView {
             idx += 1
         }
         
-        if underlineBackgroundShow && underlineShouldDisplay && underlineWidthBoundToText == false{
+        if underlineBackgroundShow && underlineShouldDisplay{ //&& underlineWidthBoundToText == false{
             let theButton = buttons[0]
             let theFrame = underlineWidthBoundToText ? (theButton.titleLabel?.frame ?? CGRect.zero) : theButton.frame
             underlineBackgroundView.frame = CGRect(x: horizontalGap, y: theFrame.maxY+self.buttonUnderlineGap, width: frame.width-2*horizontalGap, height: underlineThickness)
@@ -213,6 +214,7 @@ open class XYXFlatSegmentControl: UIView {
         button.setTitleColor(buttonSelectedColor, for: UIControl.State.selected)
         button.setTitleColor(buttonNormalColor, for: UIControl.State.normal)
         button.addTarget(self, action: #selector(buttonClick(sender:)), for: UIControl.Event.touchUpInside)
+        button.imageView?.tintColor = buttonSelectedColor
         return button
     }
     
@@ -264,12 +266,22 @@ open class XYXFlatSegmentControl: UIView {
 
         var newFrame = CGRect.zero
         if underlineWidthBoundToText {
-            let theFrame = selectedButton.titleLabel?.frame ?? CGRect.zero
-            var newX = theFrame.minX + self.horizontalGap + (CGFloat(self.buttonGap)+self.buttonWidth)*CGFloat(idx)
+            let theTitleFrame = selectedButton.titleLabel?.frame ?? CGRect.zero
+            var btnMinX = theTitleFrame.minX
+            var btnMaxY = theTitleFrame.maxY
+            var lineWidth = theTitleFrame.width
+            
+            if let _ = selectedButton.imageView?.image, let imgViewFrame = selectedButton.imageView?.frame {
+                btnMinX = min(btnMinX, imgViewFrame.minX)
+                btnMaxY = max(btnMaxY, imgViewFrame.maxY)
+                lineWidth = theTitleFrame.width + imgViewFrame.width
+            }
+            var newX = btnMinX + self.horizontalGap + (CGFloat(self.buttonGap)+self.buttonWidth)*CGFloat(idx)
             if self.flat_parentController() is UINavigationController{
                 newX -= 4
             }
-            newFrame = CGRect(x: newX, y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)
+            newFrame = CGRect(x: newX, y: btnMaxY+self.buttonUnderlineGap, width: lineWidth, height: self.underlineThickness)
+            
         }else{
             let theFrame = selectedButton.frame
             newFrame = CGRect(x: theFrame.minX, y: theFrame.maxY+self.buttonUnderlineGap, width: theFrame.width, height: self.underlineThickness)

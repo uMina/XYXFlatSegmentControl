@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Delegate-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="XYXFlatSegmentControlDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,9 +35,6 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="38m-BL-GPP"/>
-                                </connections>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="2" maxValue="13" translatesAutoresizingMaskIntoConstraints="NO" id="5Nc-pk-KpV">
                                 <rect key="frame" x="33" y="483.5" width="309" height="31"/>
@@ -185,7 +182,7 @@
                         <outlet property="labelGap" destination="DO7-yk-oob" id="eqT-qS-zpJ"/>
                         <outlet property="labelSecB" destination="l3j-fU-SOn" id="kmE-CH-qyM"/>
                         <outlet property="labelThickness" destination="GUp-kf-yii" id="qCd-iG-AK2"/>
-                        <outlet property="segView" destination="CmE-Yp-Vqr" id="8rv-xd-2BM"/>
+                        <outlet property="segView" destination="CmE-Yp-Vqr" id="QfP-pn-pJc"/>
                         <outlet property="textfield" destination="8U1-T8-pTY" id="ZXP-Z6-whD"/>
                     </connections>
                 </viewController>

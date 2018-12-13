@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         
         segmentControl.frame = CGRect(x: 0, y: labelSecB.frame.maxY + 24, width: segmentControl.frame.width, height: segmentControl.frame.height)
 //        segmentControl.titles = ["aa","bbb"]
-        segmentControl.configureButtons(titles: ["aa","bbb"], images: ["icon_wx","icon_qq"])
+        segmentControl.configureButtons(titles: ["aa","bbb"], images: ["icon_a","icon_b"])
         segmentControl.delegate = self
         self.view.addSubview(segmentControl)
 
@@ -38,18 +38,20 @@ class ViewController: UIViewController {
         segmentControl.buttonSelectedColor = UIColor.blue
     }
 
+    /// 手动设置被选择的按钮
     @IBAction func changeSelectedBtn(_ sender: UIButton) {
         textfield.resignFirstResponder()
         if let idx = Int(textfield.text ?? "0") {
             segmentControl.select(at: idx, triggerDelegate: true)
         }
     }
-    
+    /// 改变下划线颜色
     @IBAction func ChangeColor(_ sender: Any) {
         textfield.resignFirstResponder()
         segmentControl.buttonSelectedColor = UIColor.init(red: CGFloat(arc4random()%256)/255.0, green: CGFloat(arc4random()%256)/255.0, blue: CGFloat(arc4random()%256)/255.0, alpha: 1.0)
     }
     
+    /// 是否显示下划线
     @IBAction func showUnderline(_ sender: UIButton) {
         textfield.resignFirstResponder()
         underlineShouldDisplay = !underlineShouldDisplay
@@ -61,14 +63,17 @@ class ViewController: UIViewController {
         segmentControl.underlineShouldDisplay = underlineShouldDisplay
     }
     
+    /// 下划线样式：全按钮或者绑定到文字图标
     @IBAction func underlineBoundsChanged(_ sender: UIButton) {
         textfield.resignFirstResponder()
         underlineBoundsToText = !underlineBoundsToText
         let title = underlineBoundsToText ? "Underline bounds to Button" : "Underline bounds to Text"
         sender.setTitle(title, for: .normal)
+        
         segmentControl.underlineWidthBoundToText = underlineBoundsToText
     }
     
+    /// 下划线粗细
     @IBAction func underlineThicknessChanged(_ sender: UISlider) {
         textfield.resignFirstResponder()
         underlineThickness = CGFloat(sender.value)
@@ -76,6 +81,7 @@ class ViewController: UIViewController {
         labelThickness.text = "Change the thickness of the underline:\(String(format: "%.2f", sender.value))"
     }
     
+    /// 下划线距离按钮距离
     @IBAction func buttonUnderlineGapChanged(_ sender: UISlider) {
         textfield.resignFirstResponder()
         buttonUnderlineGap = CGFloat(sender.value)
@@ -83,13 +89,14 @@ class ViewController: UIViewController {
         labelGap.text = "Change the gap of button and underline:\(String(format: "%.2f", sender.value))"
     }
     
+    /// 显示下划线背景
     @IBAction func showUnderlineBg(_ sender: UISwitch) {
         textfield.resignFirstResponder()
         if sender.isOn {
             segmentControl.underlineBackgroundShow = true
         }else{
             segmentControl.underlineBackgroundShow = false
-        }   
+        }
     }
     
 }
