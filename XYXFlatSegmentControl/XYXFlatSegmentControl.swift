@@ -134,7 +134,6 @@ open class XYXFlatSegmentControl: UIView {
         for subview in self.subviews {
             subview.removeFromSuperview()
         }
-        
         guard titles.count > 0 else {
             return
         }
@@ -172,7 +171,7 @@ open class XYXFlatSegmentControl: UIView {
         }else{
             underlineBackgroundView.removeFromSuperview()
         }
-
+        
         configureunderline(animationDuration: 0)
     }
     
@@ -185,11 +184,15 @@ open class XYXFlatSegmentControl: UIView {
         guard newSelectedIdx != selectedButtonTag else {
             return
         }
+        selectedButtonTag = newSelectedIdx
         
-        let oldSelectedBtn = buttons[selectedButtonTag-buttonTagFlag]
-        oldSelectedBtn.isSelected = false
-        let newSeletedBtn = buttons[index]
-        selectedButtonTag = newSeletedBtn.tag
+        for item in buttons {
+            if item.tag == newSelectedIdx{
+                item.isSelected = true
+            }else{
+                item.isSelected = false
+            }
+        }
         
         let animationDuration = 0.1 + fabs(Double(index)) * 0.05
         configureunderline(animationDuration: animationDuration)
@@ -237,7 +240,7 @@ open class XYXFlatSegmentControl: UIView {
             theDelegate.segmentControlValueChanged(at: idx)
         }
         selectedButtonTag = sender.tag
-
+        
         let animationDuration = 0.1 + fabs(Double(sender.tag - selectedButtonTag)) * 0.05
         configureunderline(animationDuration: animationDuration)
         
@@ -251,7 +254,6 @@ open class XYXFlatSegmentControl: UIView {
             underline.removeFromSuperview()
             return
         }
-        
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(configureunderline(animationDuration:)), object: nil)
         
         if underline.superview == nil {
@@ -263,7 +265,7 @@ open class XYXFlatSegmentControl: UIView {
         selectedButton.layoutSubviews()
         
         let idx = selectedButtonTag - buttonTagFlag
-
+        
         var newFrame = CGRect.zero
         if underlineWidthBoundToText {
             let theTitleFrame = selectedButton.titleLabel?.frame ?? CGRect.zero
@@ -306,7 +308,7 @@ open class XYXFlatSegmentControl: UIView {
             self.underlineBackgroundView.center.y = self.underline.center.y
         }
     }
-
+    
     fileprivate func flat_parentController() -> UIViewController? {
         var nextResponder:UIResponder? = self.next
         while nextResponder != nil {

@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
 
   s.name         = "XYXFlatSegmentControl"
-  s.version      = "1.2.7"
+  s.version      = "1.2.8"
   s.summary      = "便捷实用的SegmentControl."
-  s.swift_version = "4.0"
+  s.swift_version = "4.2"
 
   s.description  = <<-DESC
   可设定下划线的segmentControl，可以添加到navigationBar上，也可适配到普通UIView上。可以便捷的设定是否带下划线，下划线厚度，按钮颜色和字体大小。可通过Gap便捷的对SegmentControl布局进行调整，还能指定初始化时被选择的segment.
@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
   s.source_files  = "XYXFlatSegmentControl/*.swift"
   
   s.requires_arc = true
-  `echo "4.0" > .swift-version`
+  `echo "4.2" > .swift-version`
 
 end
