@@ -29,7 +29,13 @@ open class XYXFlatSegmentControl: UIView {
     private var buttonImageNames:[String] = []
     
     //  Buttons and underline
-    open var buttonFontSize:CGFloat = 16.0
+    open var buttonFontSize:CGFloat = 16.0{
+        didSet{
+            for button in buttons {
+                button.titleLabel?.font = UIFont.systemFont(ofSize: buttonFontSize)
+            }
+        }
+    }
     open var buttonSelectedColor = UIColor.orange{
         didSet{
             underline.backgroundColor = buttonSelectedColor
